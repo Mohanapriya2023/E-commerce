@@ -40,7 +40,7 @@ async function loadProducts() {
             htmlContent += `
                 <div class="col-md-4 mb-4 product-card-container" data-category="${product.category}">
                     <div class="product-card h-100 d-flex flex-column">
-                        <img src="${imageUrl}" alt="${product.name}" style="height: 250px; object-fit: cover;" onerror="this.onerror=null; this.src='${placeholder}';">
+                        <img src="${product.imageUrl}" alt="${product.name}" style="height: 250px; object-fit: cover;" onerror="this.onerror=null; this.src='${placeholder}';">
                         <h6 class="mt-2 text-truncate" title="${product.name}">${product.name}</h6>
                         <div class="rating text-warning mb-1"><i class="fas fa-star"></i> ${product.rating}</div>
                         <p class="mb-1 text-truncate" title="${product.description}"><small>${product.description}</small></p>
