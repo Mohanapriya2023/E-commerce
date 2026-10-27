@@ -23,7 +23,7 @@ async function loadProducts() {
         const wishlist = JSON.parse(localStorage.getItem(wishlistKey)) || [];
 
         products.forEach(product => {
-            const imageUrl = `${product.ImageUrl}`;
+            const imageUrl = `${product.imageUrl}`;
             const placeholder = `https://placehold.co/300x400?text=${encodeURIComponent(product.name)}`;
             
             const isAvailable = product.isAvailable && product.stock > 0;
