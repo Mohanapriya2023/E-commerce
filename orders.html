@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Orders - E-Shop</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body class="bg-light">
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top shadow-lg">
+    <div class="container-fluid px-4">
+        
+        <!-- Brand Logo -->
+        <a class="navbar-brand d-flex align-items-center fs-4 me-4 fw-bold" href="index.html" style="color: #febd69;">
+            <i class="fas fa-shopping-bag me-2 fs-3"></i> E-Shop
+        </a>
+        
+        <!-- Mobile Toggler -->
+        <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarNav">
+            
+            <!-- ONE SINGLE LINE: No 'me-auto', no split -->
+            <ul class="navbar-nav align-items-center">
+                
+                <li class="nav-item"><a class="nav-link text-white" href="index.html">Home</a></li>
+                <li class="nav-item me-3"><a class="nav-link text-white fw-bold" href="product.html">Products</a></li>
+
+                <li class="nav-item">
+                    <a class="nav-link d-flex align-items-center text-white nav-icon-hover" href="cart.html">
+                        <i class="fas fa-shopping-cart me-2 fs-5"></i> Cart 
+                        <span class="badge bg-warning text-dark ms-1" id="cart-count">0</span>
+                    </a>
+                </li>
+
+                <li class="nav-item ms-3" id="nav-billing-item" style="display: none;">
+                    <a class="nav-link d-flex align-items-center text-success fw-bold nav-icon-hover" href="checkout.html">
+                        <i class="fas fa-file-invoice-dollar me-2 fs-5"></i> Billing
+                    </a>
+                </li>
+
+                <li class="nav-item ms-3">
+                    <a class="nav-link d-flex align-items-center text-white nav-icon-hover" href="wishlist.html">
+                        <i class="fas fa-heart me-2 fs-5 text-danger"></i> Wishlist 
+                        <span class="badge bg-danger ms-1" id="wishlist-count">0</span>
+                    </a>
+                </li>
+
+                <li class="nav-item ms-3" id="nav-auth-item">
+                    <a class="nav-link text-warning fw-bold nav-icon-hover" href="login.html">Login</a>
+                </li>
+                
+            </ul>
+
+        </div>
+    </div>
+</nav>
+
+
+    <!-- Main Content -->
+    <div class="container mt-5 mb-5">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <h3 class="fw-bold mb-0" style="color: #1e3c72;">My Orders</h3>
+            <a href="product.html" class="btn btn-outline-danger fw-bold">
+                <i class="fas fa-arrow-left me-2"></i> Back to Shopping
+            </a>
+        </div>
+
+        <div id="orders-list">
+            <!-- JS will inject orders here -->
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer-section">
+        <div class="container">
+            <div class="row gy-4">
+                <div class="col-lg-4 col-md-6">
+                    <a class="navbar-brand d-flex align-items-center fs-4 mb-3 fw-bold text-white" href="index.html" style="text-decoration: none;">
+                        <i class="fas fa-shopping-bag text-danger me-2 fs-3"></i> E-Shop
+                    </a>
+                    <p class="text-muted" style="font-size: 0.95rem; line-height: 1.8;">
+                        Your one-stop destination for quality products. We bring you the best deals on Electronics, Clothing, Fruits, and much more. Shop with confidence!
+                    </p>
+                    <div class="social-icons mt-4">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-6">
+                    <h5 class="footer-heading">Quick Links</h5>
+                    <ul class="footer-links">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="product.html">All Products</a></li>
+                        <li><a href="wishlist.html">Wishlist</a></li>
+                        <li><a href="cart.html">My Cart</a></li>
+                        <li><a href="orders.html">Order History</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <h5 class="footer-heading">Customer Service</h5>
+                    <ul class="footer-links">
+                        <li><a href="#">Contact Us</a></li>
+                        <li><a href="#">Returns & Refunds</a></li>
+                        <li><a href="#">Shipping Policy</a></li>
+                        <li><a href="#">FAQ & Help Center</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <h5 class="footer-heading">Newsletter</h5>
+                    <p class="text-muted mb-3" style="font-size: 0.95rem;">
+                        Subscribe to get special offers, free giveaways, and once-in-a-lifetime deals.
+                    </p>
+                    <form class="d-flex">
+                        <input type="email" class="form-control newsletter-input" placeholder="Enter your email" required>
+                        <button class="btn newsletter-btn" type="submit">Subscribe</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <div class="container d-flex flex-column flex-md-row justify-content-between align-items-center">
+                <p>&copy; 2026 E-Shop. All Rights Reserved.</p>
+                <div class="payment-icons mt-3 mt-md-0">
+                    <i class="fab fa-cc-visa" title="Visa"></i>
+                    <i class="fab fa-cc-mastercard" title="Mastercard"></i>
+                    <i class="fab fa-cc-amex" title="American Express"></i>
+                    <i class="fab fa-cc-paypal" title="PayPal"></i>
+                    <i class="fab fa-google-pay" title="Google Pay"></i>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/js/script.js"></script>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const container = document.getElementById('orders-list');
+            
+            // 1. FIX: Ensure orders is an empty array if nothing is in localStorage
+                        // Get all orders
+            const allOrders = JSON.parse(localStorage.getItem('orders')) || [];
+            
+            // Get the current logged-in user's ID
+            const currentUserId = localStorage.getItem('loggedInUserId');
+            
+            // Filter: Only show orders that belong to the current user
+            const orders = allOrders.filter(order => order.userId === currentUserId);
+
+            if (orders.length === 0) {
+                container.innerHTML = `
+                    <div class="text-center mt-5 bg-white p-5 rounded shadow-sm">
+                        <i class="fas fa-box-open fa-4x text-muted mb-3"></i>
+                        <h4>No orders found</h4>
+                        <p class="text-muted">You haven't placed any orders yet.</p>
+                        <a href="product.html" class="btn btn-warning mt-3 fw-bold px-4 py-2">Start Shopping</a>
+                    </div>
+                `;
+                return;
+            }
+
+            let html = '';
+            // Loop through orders in reverse (newest first)
+            orders.slice().reverse().forEach(order => {
+                let itemsHtml = '';
+                
+                if (order.items && Array.isArray(order.items)) {
+                    order.items.forEach(item => {
+                        itemsHtml += `
+                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                <div>
+                                    <h6 class="mb-0 fw-bold">${item.name}</h6>
+                                    <small class="text-muted">Qty: ${item.qty}</small>
+                                </div>
+                                <span class="fw-bold text-danger">₹${item.price}</span>
+                            </li>
+                        `;
+                    });
+                }
+
+                html += `
+                    <div class="card mb-4 shadow-sm border-0 rounded-3">
+                        <div class="card-header bg-white d-flex flex-column flex-md-row justify-content-between align-items-md-center py-3">
+                            <div>
+                                <span class="text-muted small text-uppercase fw-bold">Order Placed</span>
+                                <div class="fw-bold">${order.date}</div>
+                            </div>
+                            <div>
+                                <span class="text-muted small text-uppercase fw-bold">Total</span>
+                                <div class="fw-bold text-danger">₹${order.total}</div>
+                            </div>
+                            <div>
+                                <span class="text-muted small text-uppercase fw-bold">Order ID</span>
+                                <div class="fw-bold">${order.orderId || 'N/A'}</div>
+                            </div>
+                            <div>
+                                <span class="badge bg-success p-2"><i class="fas fa-check-circle me-1"></i> ${order.payment || 'COD'}</span>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <div class="mb-3">
+                                <h6 class="fw-bold text-secondary">Shipping Details:</h6>
+                                <p class="mb-0 small">${order.customerName || 'Customer'}</p>
+                                <p class="mb-0 small">${order.address || 'Address not available'}</p>
+                                <p class="mb-0 small">Phone: ${order.phone || 'N/A'}</p>
+                            </div>
+                            <ul class="list-group list-group-flush border-top">
+                                ${itemsHtml}
+                            </ul>
+                        </div>
+                    </div>
+                `;
+            });
+
+            container.innerHTML = html;
+        });
+    </script>
+</body>
+</html>

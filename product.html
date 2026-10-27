@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shop - E-Commerce</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+    <!-- MODERN NAVBAR -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top shadow-lg">
+    <div class="container-fluid px-4">
+        
+        <!-- Brand Logo -->
+        <a class="navbar-brand d-flex align-items-center fs-4 me-4 fw-bold" href="index.html" style="color: #febd69;">
+            <i class="fas fa-shopping-bag me-2 fs-3"></i> E-Shop
+        </a>
+        
+        <!-- Mobile Toggler -->
+        <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarNav">
+            
+            <!-- ONE SINGLE LINE: No 'me-auto', no split -->
+            <ul class="navbar-nav align-items-center">
+                
+                <li class="nav-item"><a class="nav-link text-white" href="index.html">Home</a></li>
+
+                <li class="nav-item">
+                    <a class="nav-link d-flex align-items-center text-white nav-icon-hover" href="cart.html">
+                        <i class="fas fa-shopping-cart me-2 fs-5"></i> Cart 
+                        <span class="badge bg-warning text-dark ms-1" id="cart-count">0</span>
+                    </a>
+                </li>
+
+                <li class="nav-item ms-3">
+                    <a class="nav-link d-flex align-items-center text-white nav-icon-hover" href="orders.html">
+                        <i class="fas fa-box-open me-2 fs-5"></i> My Orders
+                    </a>
+                </li>
+
+                <li class="nav-item ms-3" id="nav-billing-item" style="display: none;">
+                    <a class="nav-link d-flex align-items-center text-success fw-bold nav-icon-hover" href="checkout.html">
+                        <i class="fas fa-file-invoice-dollar me-2 fs-5"></i> Billing
+                    </a>
+                </li>
+
+                <li class="nav-item ms-3">
+                    <a class="nav-link d-flex align-items-center text-white nav-icon-hover" href="wishlist.html">
+                        <i class="fas fa-heart me-2 fs-5 text-danger"></i> Wishlist 
+                        <span class="badge bg-danger ms-1" id="wishlist-count">0</span>
+                    </a>
+                </li>
+
+                <li class="nav-item ms-3" id="nav-auth-item">
+                    <a class="nav-link text-warning fw-bold nav-icon-hover" href="login.html">Login</a>
+                </li>
+                
+            </ul>
+
+        </div>
+    </div>
+</nav>
+
+<!-- SEARCH BAR (Placed below the navbar) -->
+    <div class="bg-light py-3 border-bottom shadow-sm">
+        <div class="container-fluid px-4">
+            <form class="d-flex justify-content-center" onsubmit="return false;">
+                <div class="input-group" style="max-width: 800px;">
+                    <input type="search" class="form-control border-0 shadow-sm" id="search-input" placeholder="Search products..." oninput="searchProducts()">
+                    <button class="btn btn-warning border-0 shadow-sm" type="submit">
+                        <i class="fas fa-search"></i>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- =========================================
+         MAIN LAYOUT (Sidebar + Products)
+         ========================================= -->
+    <div class="container-fluid mt-0 px-0">
+        <div class="row g-0"> <!-- g-0 removes the gap between columns -->
+            
+            <!-- Sidebar (Filters) -->
+            <div class="col-lg-3 col-md-12 border-end">
+                <div class="sidebar">
+                    
+                    <!-- Department / Categories -->
+                    <h5 style="margin-top: 0;">Department</h5>
+                    <ul id="category-filters">
+                        <li><input type="radio" id="cat-all" name="category" value="All" checked> <label for="cat-all">All Products</label></li>
+                        <li><input type="radio" id="cat-fruits" name="category" value="Fruits"> <label for="cat-fruits">Fruits</label></li>
+                        <li><input type="radio" id="cat-electronics" name="category" value="Electronics"> <label for="cat-electronics">Electronics</label></li>
+                        <li><input type="radio" id="cat-clothing" name="category" value="Clothing"> <label for="cat-clothing">Clothing</label></li>
+                        <li><input type="radio" id="cat-toys" name="category" value="Toys"> <label for="cat-toys">Toys</label></li>
+                        <li><input type="radio" id="cat-tools" name="category" value="Tools"> <label for="cat-tools">Tools</label></li>
+                        <li><input type="radio" id="cat-kitchen" name="category" value="Kitchen"> <label for="cat-kitchen">Kitchen</label></li>
+                        <li><input type="radio" id="cat-beauty" name="category" value="Beauty"> <label for="cat-beauty">Beauty</label></li>
+                        <li><input type="radio" id="cat-sports" name="category" value="Sports"> <label for="cat-sports">Sports</label></li>
+                        <li><input type="radio" id="cat-books" name="category" value="Books"> <label for="cat-books">Books</label></li>
+                    </ul>
+                    
+                    
+                    <h5 class="mt-4">Price</h5>
+                    <div class="px-2">
+                        <input type="range" class="form-range" id="price-range" min="0" max="1000" step="50" value="1000" oninput="filterByPrice(this.value)">
+                        <div class="d-flex justify-content-between text-muted mt-1">
+                            <small>₹0</small>
+                            <small id="price-label">₹1,000+</small>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- Product Grid Area -->
+            <div class="col-lg-9 col-md-12 py-4 px-4">
+                <div class="row" id="product-list">
+                    <!-- Loading Spinner (JS will replace this with products) -->
+                    <div class="text-center w-100 mt-5">
+                        <div class="spinner-border text-primary" role="status" style="width: 3rem; height: 3rem;">
+                            <span class="visually-hidden">Loading...</span>
+                        </div>
+                        <p class="mt-3 text-muted fw-bold">Loading Products...</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- =========================================
+         RIGHT SIDE CART SIDEBAR (OFFCANVAS)
+         ========================================= -->
+    <div class="offcanvas offcanvas-end" tabindex="-1" id="cartSidebar" aria-labelledby="cartSidebarLabel" style="width: 380px;">
+        <div class="offcanvas-header bg-light border-bottom">
+            <h5 class="offcanvas-title fw-bold" id="cartSidebarLabel"><i class="fas fa-shopping-cart text-danger me-2"></i> Your Cart</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body d-flex flex-column" id="sidebar-cart-body">
+            <!-- JS injects items here -->
+        </div>
+    </div>
+
+        <!-- =========================================
+         PREMIUM FOOTER
+         ========================================= -->
+    <footer class="footer-section">
+        <div class="container">
+            <div class="row gy-4">
+                
+                <!-- Brand & About -->
+                <div class="col-lg-4 col-md-6">
+                    <a class="navbar-brand d-flex align-items-center fs-4 mb-3 fw-bold text-white" href="index.html" style="text-decoration: none;">
+                        <i class="fas fa-shopping-bag text-danger me-2 fs-3"></i> E-Shop
+                    </a>
+                    <p class="text-muted" style="font-size: 0.95rem; line-height: 1.8;">
+                        Your one-stop destination for quality products. We bring you the best deals on Electronics, Clothing, Fruits, and much more. Shop with confidence!
+                    </p>
+                    <div class="social-icons mt-4">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+
+                <!-- Quick Links -->
+                <div class="col-lg-2 col-md-6">
+                    <h5 class="footer-heading">Quick Links</h5>
+                    <ul class="footer-links">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="products.html">All Products</a></li>
+                        <li><a href="wishlist.html">Wishlist</a></li>
+                        <li><a href="cart.html">My Cart</a></li>
+                        <li><a href="orders.html">Order History</a></li>
+                    </ul>
+                </div>
+
+                <!-- Customer Service -->
+                <div class="col-lg-3 col-md-6">
+                    <h5 class="footer-heading">Customer Service</h5>
+                    <ul class="footer-links">
+                        <li><a href="#">Contact Us</a></li>
+                        <li><a href="#">Returns & Refunds</a></li>
+                        <li><a href="#">Shipping Policy</a></li>
+                        <li><a href="#">FAQ & Help Center</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                    </ul>
+                </div>
+
+                <!-- Newsletter -->
+                <div class="col-lg-3 col-md-6">
+                    <h5 class="footer-heading">Newsletter</h5>
+                    <p class="text-muted mb-3" style="font-size: 0.95rem;">
+                        Subscribe to get special offers, free giveaways, and once-in-a-lifetime deals.
+                    </p>
+                    <form class="d-flex">
+                        <input type="email" class="form-control newsletter-input" placeholder="Enter your email" required>
+                        <button class="btn newsletter-btn" type="submit">Subscribe</button>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- Bottom Copyright Bar -->
+        <div class="footer-bottom">
+            <div class="container d-flex flex-column flex-md-row justify-content-between align-items-center">
+                <p>&copy; 2026 E-Shop. All Rights Reserved.</p>
+                <div class="payment-icons mt-3 mt-md-0">
+                    <i class="fab fa-cc-visa" title="Visa"></i>
+                    <i class="fab fa-cc-mastercard" title="Mastercard"></i>
+                    <i class="fab fa-cc-amex" title="American Express"></i>
+                    <i class="fab fa-cc-paypal" title="PayPal"></i>
+                    <i class="fab fa-google-pay" title="Google Pay"></i>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap & JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/js/script.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+    // 1. Load UI & Products
+    updateUI();
+    loadProducts(); 
+
+    // 2. Check if a category was selected from the Home page
+    const savedCategory = localStorage.getItem('selectedCategory');
+    
+    // 3. Wait a tiny bit for products to load, then filter
+    if (savedCategory) {
+        setTimeout(() => {
+            filterProducts(savedCategory);
+            
+            // Update the sidebar radio buttons to match
+            const radioToCheck = document.querySelector(`input[value="${savedCategory}"]`);
+            if (radioToCheck) radioToCheck.checked = true;
+            
+            // Clear the memory so it doesn't auto-filter next time
+            localStorage.removeItem('selectedCategory');
+        }, 300); 
+    }
+});
+    </script>
+    
+</body>
+</html>

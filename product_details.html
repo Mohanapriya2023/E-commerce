@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Details - E-Shop</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light sticky-top">
+        <div class="container-fluid px-4">
+            <a class="navbar-brand d-flex align-items-center fs-4 me-4 fw-bold" href="index.html" style="text-decoration: none; color: #e63946;">
+                <i class="fas fa-shopping-bag me-2 fs-3"></i> E-Shop
+            </a>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto align-items-center">
+                    <li class="nav-item"><a class="nav-link" href="wishlist.html"><i class="fas fa-heart"></i> Wishlist <span class="badge" id="wishlist-count">0</span></a></li>
+                    <li class="nav-item me-3"><a class="nav-link" href="cart.html"><i class="fas fa-shopping-cart me-1"></i> Cart <span class="cart-badge" id="cart-count">0</span></a></li>
+                    <li class="nav-item me-3" id="nav-auth-item"><a class="nav-link" href="login.html">Login</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Product Details Container -->
+    <div class="container mt-5" id="product-details-container">
+        <!-- JS will inject details here -->
+        <div class="text-center mt-5">
+            <div class="spinner-border text-primary" role="status"></div>
+            <p class="mt-2">Loading Product...</p>
+        </div>
+    </div>
+
+    <!-- Bootstrap & JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/js/script.js"></script>
+
+    <!-- Page Specific Logic -->
+    <script>
+        document.addEventListener('DOMContentLoaded', async () => {
+            // 1. Get the ID from the URL
+            const urlParams = new URLSearchParams(window.location.search);
+            const productId = urlParams.get('id');
+
+            if (!productId) {
+                document.getElementById('product-details-container').innerHTML = `
+                    <div class="alert alert-warning text-center">
+                        No product selected. <a href="product.html">Go back to shop</a>
+                    </div>`;
+                return;
+            }
+
+            try {
+                // 2. Fetch the JSON
+                const response = await fetch('./assets/js/products.json');
+                const products = await response.json();
+
+                // 3. Find the specific product
+                const product = products.find(p => p.Id == productId);
+
+                if (!product) {
+                    document.getElementById('product-details-container').innerHTML = `<div class="alert alert-danger text-center">Product not found!</div>`;
+                    return;
+                }
+
+                // 4. Setup Image
+                const imageUrl = `assets/images/${product.name}.jpg`;
+                const placeholder = `https://placehold.co/600x600?text=${encodeURIComponent(product.name)}`;
+
+                // 5. Build the HTML
+                document.getElementById('product-details-container').innerHTML = `
+                    <div class="row bg-white p-4 rounded shadow-sm">
+                        <div class="col-md-5 text-center mb-4">
+                            <img src="${imageUrl}" alt="${product.name}" class="img-fluid rounded border" style="max-height: 400px; object-fit: cover;" onerror="this.onerror=null; this.src='${placeholder}';">
+                        </div>
+                        <div class="col-md-7">
+                            <h2 class="mb-1 fw-bold">${product.name}</h2>
+                            <div class="d-flex align-items-center mb-3">
+                                <span class="text-warning me-2"><i class="fas fa-star"></i> ${product.rating}</span>
+                                <span class="text-primary">| ${product.category}</span>
+                            </div>
+                            <hr>
+                            <h3 class="text-danger mb-2">₹${product.price}</h3>
+                            <p class="text-muted small">Inclusive of all taxes</p>
+                            <h5 class="mt-4">About this item</h5>
+                            <p>${product.description}</p>
+                            <div class="d-flex gap-3 mt-4">
+                                <button onclick="addToCart(${product.Id}, '${product.name.replace(/'/g, "\\'")}', ${product.price}, '${imageUrl}')" class="btn btn-amazon btn-lg px-4">
+                                    <i class="fas fa-shopping-cart"></i> Add to Cart
+                                </button>
+                                <button onclick="toggleWishlist(${product.Id}, '${product.name.replace(/'/g, "\\'")}', ${product.price}, '${imageUrl}')" class="btn btn-outline-danger btn-lg px-4">
+                                    <i class="far fa-heart"></i> Wishlist
+                                </button>
+                            </div>
+                            <div class="mt-4">
+                                <a href="product.html" class="text-decoration-none"><i class="fas fa-arrow-left"></i> Back to Products</a>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            } catch (error) {
+                console.error("Error loading product:", error);
+                document.getElementById('product-details-container').innerHTML = `<div class="alert alert-danger text-center">Failed to load product data.</div>`;
+            }
+        });
+    </script>
+</body>
+</html>

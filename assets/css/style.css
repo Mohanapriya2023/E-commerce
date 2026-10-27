@@ -1,0 +1,835 @@
+/* =========================================
+   PREMIUM E-COMMERCE GLOBAL STYLES
+   ========================================= */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background: linear-gradient(135deg, #f5f7fa 0%, #e4e8ec 100%);
+    background-attachment: fixed;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    overflow-x: hidden;
+    color: #333;
+}
+
+/* Custom Premium Scrollbar */
+::-webkit-scrollbar {
+    width: 8px;
+}
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+::-webkit-scrollbar-thumb {
+    background: linear-gradient(180deg, #1e3c72, #2a5298);
+    border-radius: 10px;
+}
+::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(180deg, #e63946, #ff4757);
+}
+
+/* =========================================
+   PREMIUM NAVBAR (Glassmorphism & Animations)
+   ========================================= */
+.navbar {
+    background: rgba(255, 255, 255, 0.92) !important;
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.05);
+    padding: 12px 0;
+    transition: all 0.3s ease;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.6);
+}
+
+.navbar-nav {
+    margin-left: 80px;
+    gap: 70px !important;
+}
+
+.navbar-brand {
+    font-weight: 900;
+    font-size: 1.6rem;
+    color: #1e3c72 !important; 
+    letter-spacing: 0.5px;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    background: none;
+    -webkit-text-fill-color: initial;
+}
+
+.navbar-brand i {
+    color: #e63946;
+    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    display: inline-block;
+}
+
+.navbar-brand:hover {
+    transform: scale(1.05);
+}
+
+.navbar-brand:hover i {
+    transform: scale(1.2) rotate(-15deg);
+    filter: drop-shadow(0 4px 8px rgba(230, 57, 70, 0.4));
+}
+
+/* Nav Links */
+.navbar-nav .nav-link {
+    color: #333 !important;
+    font-weight: 600;
+    font-size: 1rem;
+    padding: 8px 16px !important;
+    transition: all 0.3s ease;
+    position: relative;
+    border-radius: 8px;
+}
+
+.navbar-nav .nav-link:hover {
+    color: #e63946 !important;
+    background: rgba(230, 57, 70, 0.05);
+    transform: translateY(-2px);
+}
+
+/* Animated Underline (excluding dropdown toggle) */
+.navbar-nav > .nav-item > .nav-link:not(.dropdown-toggle)::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: 5px;
+    left: 50%;
+    background-color: #e63946;
+    transition: all 0.3s ease;
+    transform: translateX(-50%);
+    border-radius: 2px;
+}
+
+.navbar-nav > .nav-item > .nav-link:not(.dropdown-toggle):hover::after {
+    width: 80%;
+}
+
+/* Dropdown Arrow Fix */
+.navbar-nav .dropdown-toggle::after {
+    border: none;
+    content: "\f0d7";
+    font-family: "Font Awesome 6 Free";
+    font-weight: 900;
+    font-size: 0.8rem;
+    vertical-align: middle;
+    margin-left: 6px;
+    color: #666;
+    transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.navbar-nav .dropdown-toggle:hover::after {
+    color: #e63946;
+    transform: rotate(180deg);
+}
+
+/* Nav Gaps */
+.navbar-nav.gap-4 {
+    gap: 24px !important; 
+}
+
+/* Mobile Menu */
+@media (max-width: 991.98px) {
+    .navbar-collapse {
+        background: #ffffff;
+        padding: 1rem;
+        border-radius: 12px;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+        margin-top: 1rem;
+        border: 1px solid #f0f0f0;
+    }
+    .navbar-nav.gap-4 {
+        gap: 8px !important;
+    }
+    .navbar-nav .nav-item {
+        width: 100%;
+    }
+}
+
+/* =========================================
+   ATTRACTIVE CART BADGE
+   ========================================= */
+.cart-badge {
+    background: linear-gradient(135deg, #ff4757, #e63946);
+    color: white;
+    font-weight: bold;
+    font-size: 0.8rem;
+    padding: 4px 10px;
+    border-radius: 50px;
+    margin-left: 8px;
+    box-shadow: 0 4px 10px rgba(255, 71, 87, 0.4);
+    animation: pulse-badge 2s infinite;
+    display: inline-block;
+}
+
+@keyframes pulse-badge {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.15); box-shadow: 0 0 15px rgba(255, 71, 87, 0.8); }
+    100% { transform: scale(1); }
+}
+
+/* =========================================
+   PREMIUM SIDEBAR (Filters)
+   ========================================= */
+.sidebar {
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(15px);
+    padding: 30px 25px;
+    height: 100vh;
+    position: sticky;
+    top: 0;
+    border-right: 1px solid rgba(255, 255, 255, 0.5);
+    box-shadow: 5px 0 20px rgba(0,0,0,0.02);
+    overflow-y: auto;
+    border-radius: 0;
+}
+
+.sidebar::-webkit-scrollbar {
+    width: 5px;
+}
+.sidebar::-webkit-scrollbar-thumb {
+    background: #ccc;
+    border-radius: 5px;
+}
+
+.sidebar h5 {
+    font-weight: 800;
+    color: #1e3c72;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    font-size: 0.9rem;
+    margin-bottom: 20px;
+    margin-top: 25px;
+    position: relative;
+}
+
+.sidebar h5::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -8px;
+    width: 40px;
+    height: 3px;
+    background: #e63946;
+    border-radius: 3px;
+    transition: width 0.3s ease;
+}
+
+.sidebar h5:hover::after {
+    width: 100%;
+}
+
+.sidebar ul {
+    list-style: none;
+    padding-left: 0;
+    margin-bottom: 30px;
+}
+
+.sidebar li {
+    font-size: 1.05rem;
+    color: #555;
+    margin-bottom: 12px;
+    padding: 8px 10px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.sidebar li:hover {
+    background: white;
+    color: #e63946;
+    transform: translateX(8px);
+    box-shadow: -5px 5px 15px rgba(0,0,0,0.05);
+}
+
+/* Custom Radio Buttons */
+.sidebar input[type="radio"] {
+    appearance: none;
+    -webkit-appearance: none;
+    width: 20px;
+    height: 20px;
+    border: 2px solid #bbb;
+    border-radius: 50%;
+    margin-right: 12px;
+    position: relative;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.sidebar input[type="radio"]:checked {
+    border-color: #e63946;
+    box-shadow: 0 0 10px rgba(230, 57, 70, 0.4);
+}
+
+.sidebar input[type="radio"]:checked::after {
+    content: '';
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%) scale(1);
+    width: 10px; height: 10px;
+    background-color: #e63946;
+    border-radius: 50%;
+    animation: popIn 0.3s ease;
+}
+
+@keyframes popIn {
+    0% { transform: translate(-50%, -50%) scale(0); }
+    80% { transform: translate(-50%, -50%) scale(1.3); }
+    100% { transform: translate(-50%, -50%) scale(1); }
+}
+
+/* =========================================
+   3D PRODUCT CARDS (The Main Attraction)
+   ========================================= */
+.product-card {
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 16px;
+    padding: 20px;
+    border: 1px solid rgba(255,255,255,0.8);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    position: relative;
+    overflow: hidden;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.product-card:hover {
+    transform: translateY(-12px) scale(1.02);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.12);
+    border-color: #febd69;
+}
+
+.product-card img {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+    border-radius: 12px;
+    transition: transform 0.5s ease;
+}
+
+.product-card:hover img {
+    transform: scale(1.1) rotate(1deg);
+}
+
+/* Sweeping Shine Effect */
+.product-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 50%;
+    height: 100%;
+    background: linear-gradient(to right, rgba(255,255,255,0) 0%, rgba(255,255,255,0.4) 50%, rgba(255,255,255,0) 100%);
+    transform: skewX(-25deg);
+    transition: all 0.7s ease;
+    z-index: 1;
+    pointer-events: none;
+}
+
+.product-card:hover::before {
+    left: 120%;
+}
+
+.product-card h6 {
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: #222;
+    margin-top: 15px;
+    transition: color 0.3s;
+}
+
+.product-card:hover h6 {
+    color: #e63946;
+}
+
+.price-text {
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: #e63946;
+}
+
+.mrp-text {
+    text-decoration: line-through;
+    color: #888;
+    font-size: 0.9rem;
+    margin-left: 8px;
+}
+
+/* =========================================
+   ULTIMATE PREMIUM BUTTONS
+   ========================================= */
+.btn {
+    border-radius: 10px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+}
+
+.btn::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255,255,255,0.2);
+    z-index: -1;
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: transform 0.3s ease-out;
+}
+
+.btn:hover::after {
+    transform: scaleX(1);
+    transform-origin: left;
+}
+
+.btn:active {
+    transform: scale(0.95) translateY(2px) !important;
+}
+
+.btn-amazon {
+    background: linear-gradient(135deg, #febd69, #f3a847);
+    border: none;
+    color: #111;
+    box-shadow: 0 4px 15px rgba(243, 168, 71, 0.4);
+}
+
+.btn-amazon:hover {
+    background: linear-gradient(135deg, #f3a847, #febd69);
+    box-shadow: 0 8px 20px rgba(243, 168, 71, 0.6);
+    transform: translateY(-3px);
+    color: #111;
+}
+
+.btn-outline-danger {
+    border: 2px solid #e63946;
+    color: #e63946;
+}
+
+.btn-outline-danger:hover {
+    background: #e63946;
+    color: white;
+    box-shadow: 0 8px 20px rgba(230, 57, 70, 0.4);
+    transform: translateY(-3px);
+}
+
+.btn-warning {
+    background: linear-gradient(135deg, #ffc107, #ff9800);
+    border: none;
+    color: white;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
+    box-shadow: 0 4px 15px rgba(255, 152, 0, 0.4);
+}
+
+.btn-warning:hover {
+    background: linear-gradient(135deg, #ff9800, #ffc107);
+    box-shadow: 0 8px 20px rgba(255, 152, 0, 0.6);
+    transform: translateY(-3px);
+    color: white;
+}
+
+/* =========================================
+   HOME PAGE SPECIFIC STYLES
+   ========================================= */
+.hero-banner {
+    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://images.unsplash.com/photo-1607082348824-0a96f2a4b9da?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80') center/cover;
+    height: 450px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: white;
+    margin-bottom: 40px;
+    border-radius: 0 0 20px 20px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+}
+
+.category-card {
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    cursor: pointer;
+    border: 1px solid #eee;
+    border-radius: 16px;
+    background: white;
+}
+
+.category-card:hover {
+    transform: translateY(-10px) scale(1.02);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.1) !important;
+    border-color: #e63946;
+}
+
+.category-icon {
+    font-size: 3.5rem;
+    margin-bottom: 15px;
+    background: -webkit-linear-gradient(45deg, #e63946, #ff4757);
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    transition: transform 0.3s ease;
+}
+
+.category-card:hover .category-icon {
+    transform: scale(1.2) rotate(5deg);
+}
+
+/* =========================================
+   PREMIUM FOOTER STYLES
+   ========================================= */
+.footer-section {
+    background-color: #1a1a1a;
+    color: #d1d1d1;
+    padding-top: 60px;
+    margin-top: 60px;
+    border-top: 5px solid #e63946;
+}
+
+.footer-heading {
+    color: white;
+    font-size: 1.1rem;
+    font-weight: 700;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    position: relative;
+}
+
+.footer-heading::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -8px;
+    width: 30px;
+    height: 2px;
+    background-color: #e63946;
+    transition: width 0.3s ease;
+}
+
+.footer-heading:hover::after {
+    width: 60px;
+}
+
+.footer-links {
+    list-style: none;
+    padding-left: 0;
+}
+
+.footer-links li {
+    margin-bottom: 12px;
+}
+
+.footer-links a {
+    color: #a0a0a0;
+    text-decoration: none;
+    font-size: 0.95rem;
+    transition: all 0.3s ease;
+    display: inline-block;
+}
+
+.footer-links a:hover {
+    color: #febd69;
+    transform: translateX(5px);
+}
+
+.social-icons a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    background-color: #2a2a2a;
+    color: #ffffff;
+    border-radius: 50%;
+    margin-right: 10px;
+    font-size: 1.1rem;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.social-icons a:hover {
+    background-color: #e63946;
+    transform: translateY(-5px) rotate(10deg);
+    box-shadow: 0 10px 20px rgba(230, 57, 70, 0.4);
+}
+
+.footer-bottom {
+    background-color: #111111;
+    padding: 20px 0;
+    margin-top: 40px;
+    text-align: center;
+    border-top: 1px solid #2a2a2a;
+}
+
+.footer-bottom p {
+    margin: 0;
+    font-size: 0.9rem;
+    color: #777;
+}
+
+/* =========================================
+   CART OFFCANVAS & MISC
+   ========================================= */
+.offcanvas {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(15px);
+    box-shadow: -10px 0 40px rgba(0,0,0,0.15) !important;
+}
+
+.cart-item {
+    background: white;
+    padding: 15px;
+    border-radius: 12px;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.03);
+    transition: transform 0.2s ease;
+}
+
+.cart-item:hover {
+    transform: translateX(-5px);
+}
+
+.cart-item img {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+/* Responsive Sidebar */
+@media (max-width: 991px) {
+    .sidebar {
+        height: auto;
+        position: relative;
+        box-shadow: none;
+        border-right: none;
+        border-bottom: 1px solid #eee;
+        padding: 20px;
+    }
+    .product-card:hover {
+        transform: translateY(-5px); 
+    }
+}
+
+/* Reduced Motion Support */
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
+/* =========================================
+   ULTIMATE 3D PRODUCT CARDS (Graphics & Animation)
+   ========================================= */
+.product-card {
+    background: #ffffff;
+    border-radius: 20px;
+    padding: 20px;
+    border: 2px solid transparent;
+    /* Smooth transition for all hover effects */
+    transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    position: relative;
+    overflow: hidden;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
+    z-index: 1;
+}
+
+/* 1. Gradient Glowing Border on Hover */
+.product-card::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 20px;
+    padding: 2px;
+    background: linear-gradient(135deg, #febd69, #e63946, #1e3c72);
+    mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    mask-composite: exclude;
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+    pointer-events: none;
+    z-index: 10;
+}
+
+
+.product-card:hover::after {
+    opacity: 1;
+}
+
+/* 2. Lifting and Floating Effect */
+.product-card:hover {
+    transform: translateY(-12px);
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
+}
+
+/* 3. The Shine/Sweep Graphic Animation */
+.product-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -150%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        90deg, 
+        transparent, 
+        rgba(255, 255, 255, 0.6), 
+        transparent
+    );
+    transform: skewX(-25deg);
+    transition: left 0.8s ease-in-out;
+    z-index: 2;
+    pointer-events: none;
+}
+
+.product-card:hover::before {
+    left: 150%;
+}
+
+/* 4. Product Image Zoom & Rotate */
+.product-card img {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+    border-radius: 12px;
+    transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    position: relative;
+    z-index: 1;
+}
+
+.product-card:hover img {
+    transform: scale(1.12) rotate(2deg);
+}
+
+/* 5. Text & Content Upgrades */
+.product-card h6 {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #222;
+    margin-top: 15px;
+    transition: color 0.3s ease, transform 0.3s ease;
+    position: relative;
+    z-index: 1;
+}
+
+.product-card:hover h6 {
+    color: #e63946;
+    transform: translateX(5px); /* Text slides slightly on hover */
+}
+
+.price-text {
+    font-size: 1.4rem;
+    font-weight: 800;
+    color: #e63946;
+    letter-spacing: -0.5px;
+}
+
+/* 6. Animated Rating Stars */
+.product-card .fa-star {
+    color: #ffc107;
+    font-size: 0.9rem;
+    transition: transform 0.3s ease, color 0.3s ease;
+    display: inline-block;
+}
+
+.product-card:hover .fa-star {
+    animation: starPulse 1.5s infinite alternate;
+}
+
+.product-card:hover .fa-star:nth-child(2) { animation-delay: 0.2s; }
+.product-card:hover .fa-star:nth-child(3) { animation-delay: 0.4s; }
+.product-card:hover .fa-star:nth-child(4) { animation-delay: 0.6s; }
+.product-card:hover .fa-star:nth-child(5) { animation-delay: 0.8s; }
+
+@keyframes starPulse {
+    0% { transform: scale(1); color: #ffc107; }
+    100% { transform: scale(1.2); color: #ff9800; text-shadow: 0 0 10px rgba(255, 152, 0, 0.5); }
+}
+
+/* =========================================
+   FOOTER TEXT & BUTTON VISIBILITY FIX
+   ========================================= */
+
+/* 1. Force general text inside the footer to be a light grey */
+.footer-section,
+.footer-section p,
+.footer-section li,
+.footer-section small {
+    color: #d1d1d1 !important; /* Light Grey */
+}
+
+/* 2. Make sure the links are bright and visible */
+.footer-links a {
+    color: #a0a0a0 !important; 
+}
+.footer-links a:hover {
+    color: #febd69 !important; /* Turns gold on hover */
+}
+
+/* 3. Fix the Newsletter Subscribe Button */
+.newsletter-btn {
+    background-color: #e63946 !important; /* Premium Red */
+    color: #ffffff !important; /* White text */
+    font-weight: 600;
+    box-shadow: 0 4px 10px rgba(230, 57, 70, 0.3); /* Red glow */
+    border: none;
+    padding: 10px 20px;
+}
+
+.newsletter-btn:hover {
+    background-color: #c1121f !important;
+    color: #ffffff !important;
+    transform: translateY(-2px); /* Small lift effect */
+    box-shadow: 0 6px 15px rgba(230, 57, 70, 0.5);
+}
+
+/* 4. Make sure the input box is also clean */
+.newsletter-input {
+    background-color: #ffffff !important;
+    color: #333 !important;
+    border: none;
+}
+/* =========================================
+   NEWSLETTER FORM FIX (Prevents squished button)
+   ========================================= */
+
+/* Target the form inside the footer */
+.footer-section form {
+    display: flex;
+    width: 100%;
+}
+
+/* Make the input take up 70% of the space */
+.footer-section .newsletter-input {
+    flex: 1; /* Allow it to grow and shrink */
+    width: 100%;
+    max-width: 75%; /* Prevents it from pushing the button out */
+    border-radius: 5px 0 0 5px !important; /* Rounded left corners */
+    padding: 10px 15px;
+}
+
+/* Make the button take up 25% of the space */
+.footer-section .newsletter-btn {
+    flex: 0 0 30%; /* Fixed width for the button */
+    border-radius: 0 5px 5px 0 !important; /* Rounded right corners */
+    padding: 10px 0;
+    white-space: nowrap; /* Prevents text from wrapping to 2 lines */
+}

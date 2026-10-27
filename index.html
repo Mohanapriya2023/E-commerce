@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E-Shop - Home</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <style>
+        .navbar-nav {
+    margin-left: 130px;
+    gap: 80px !important;
+}
+    </style>
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-light sticky-top">
+    <div class="container-fluid px-4">
+        
+        <!-- Brand Logo -->
+        <a class="navbar-brand d-flex align-items-center fs-4 me-4 fw-bold" href="index.html" style="text-decoration: none; color: #e63946;">
+            <i class="fas fa-shopping-bag me-2 fs-3"></i> E-Shop
+        </a>
+        
+        <!-- Mobile Toggler -->
+        <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        
+        <div class="collapse navbar-collapse" id="navbarNav">
+            
+            <!-- ONE SINGLE LINE: Removed me-auto and ms-auto, added gap-3 for common spacing -->
+            <ul class="navbar-nav align-items-center gap-3">
+                
+                <li class="nav-item"><a class="nav-link" href="product.html">Products</a></li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
+                        Categories
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="product.html?category=Fruits">Fruits</a></li>
+                        <li><a class="dropdown-item" href="product.html?category=Electronics">Electronics</a></li>
+                        <li><a class="dropdown-item" href="product.html?category=Clothing">Clothing</a></li>
+                        <li><a class="dropdown-item" href="product.html?category=Toys">Toys</a></li>
+                        <li><a class="dropdown-item" href="product.html?category=Tools">Tools</a></li>
+                        <li><a class="dropdown-item" href="product.html?category=Kitchen">Kitchen</a></li>
+                        <li><a class="dropdown-item" href="product.html?category=Beauty">Beauty</a></li>
+                        <li><a class="dropdown-item" href="product.html?category=Sports">Sports</a></li>
+                        <li><a class="dropdown-item" href="product.html?category=Books">Books</a></li>
+                    </ul>
+                </li>
+
+                <!-- Cart, Orders, and Login are now directly next to Categories -->
+                <li class="nav-item">
+                    <a class="nav-link d-flex align-items-center" href="cart.html">
+                        <i class="fas fa-shopping-cart me-1"></i> Cart 
+                        <span class="cart-badge" id="cart-count">0</span>
+                    </a>
+                </li>
+                
+                <li class="nav-item">
+                    <a class="nav-link" href="orders.html">My Orders</a>
+                </li>
+                
+                <li class="nav-item" id="nav-auth-item">
+                    <a class="nav-link" href="login.html">Login</a>
+                </li>
+                
+            </ul>
+
+        </div>
+    </div>
+</nav>
+    <!-- Hero Banner Ad -->
+    <div class="hero-banner">
+        <div>
+            <h1 class="display-3 fw-bold mb-3">Mega Sale is Live!</h1>
+            <p class="lead mb-4">Get up to 70% off on selected items.</p>
+            <a href="product.html" class="btn btn-warning btn-lg px-5 py-3 fw-bold rounded-pill shadow">Shop Now <i class="fas fa-arrow-right ms-2"></i></a>
+        </div>
+    </div>
+
+    <!-- Shop by Category Section -->
+<div class="container my-5">
+    <h3 class="text-center fw-bold mb-4" style="color: #1e3c72;">Shop by Category</h3>
+    
+    <div class="row g-4 justify-content-center">
+        
+        <!-- 1. Fruits -->
+        <div class="col-6 col-md-3">
+            <div class="category-card p-4 text-center bg-white" onclick="goToCategory('Fruits')">
+                <i class="fas fa-apple-alt category-icon"></i>
+                <h5 class="fw-bold text-dark">Fruits</h5>
+            </div>
+        </div>
+
+        <!-- 2. Electronics -->
+        <div class="col-6 col-md-3">
+            <div class="category-card p-4 text-center bg-white" onclick="goToCategory('Electronics')">
+                <i class="fas fa-laptop category-icon"></i>
+                <h5 class="fw-bold text-dark">Electronics</h5>
+            </div>
+        </div>
+
+        <!-- 3. Clothing -->
+        <div class="col-6 col-md-3">
+            <div class="category-card p-4 text-center bg-white" onclick="goToCategory('Clothing')">
+                <i class="fas fa-tshirt category-icon"></i>
+                <h5 class="fw-bold text-dark">Clothing</h5>
+            </div>
+        </div>
+
+        <!-- 4. Toys -->
+        <div class="col-6 col-md-3">
+            <div class="category-card p-4 text-center bg-white" onclick="goToCategory('Toys')">
+                <i class="fas fa-gamepad category-icon"></i>
+                <h5 class="fw-bold text-dark">Toys</h5>
+            </div>
+        </div>
+
+        <!-- 5. Tools -->
+        <div class="col-6 col-md-3">
+            <div class="category-card p-4 text-center bg-white" onclick="goToCategory('Tools')">
+                <i class="fas fa-tools category-icon"></i>
+                <h5 class="fw-bold text-dark">Tools</h5>
+            </div>
+        </div>
+
+        <!-- 6. Kitchen -->
+        <div class="col-6 col-md-3">
+            <div class="category-card p-4 text-center bg-white" onclick="goToCategory('Kitchen')">
+                <i class="fas fa-blender category-icon"></i>
+                <h5 class="fw-bold text-dark">Kitchen</h5>
+            </div>
+        </div>
+
+        <!-- 7. Beauty -->
+        <div class="col-6 col-md-3">
+            <div class="category-card p-4 text-center bg-white" onclick="goToCategory('Beauty')">
+                <i class="fas fa-spa category-icon"></i>
+                <h5 class="fw-bold text-dark">Beauty</h5>
+            </div>
+        </div>
+
+        <!-- 8. Sports -->
+        <div class="col-6 col-md-3">
+            <div class="category-card p-4 text-center bg-white" onclick="goToCategory('Sports')">
+                <i class="fas fa-football-ball category-icon"></i>
+                <h5 class="fw-bold text-dark">Sports</h5>
+            </div>
+        </div>
+
+        <!-- 9. Books -->
+        <div class="col-6 col-md-3">
+            <div class="category-card p-4 text-center bg-white" onclick="goToCategory('Books')">
+                <i class="fas fa-book category-icon"></i>
+                <h5 class="fw-bold text-dark">Books</h5>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+    <!-- Promo Banner -->
+    <div class="container mb-5">
+        <div class="promo-banner text-center shadow-lg">
+            <h2 class="fw-bold">Free Delivery on Orders Over ₹500!</h2>
+            <p class="lead">No hidden charges. Fast and secure delivery.</p>
+        </div>
+    </div>
+
+    <!-- Trending Products (Loads 4 items from JSON) -->
+    <div class="container mb-5">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <h3 class="fw-bold mb-0" style="color: #1e3c72;">Trending Now</h3>
+            <a href="product.html" class="btn btn-outline-danger fw-bold">View All</a>
+        </div>
+        <div class="row" id="trending-products">
+            <!-- JS will load 4 products here -->
+        </div>
+    </div>
+
+        <!-- =========================================
+         PREMIUM FOOTER
+         ========================================= -->
+    <footer class="footer-section">
+        <div class="container">
+            <div class="row gy-4">
+                
+                <!-- Brand & About -->
+                <div class="col-lg-4 col-md-6">
+                    <a class="navbar-brand d-flex align-items-center fs-4 mb-3 fw-bold text-white" href="index.html" style="text-decoration: none;">
+                        <i class="fas fa-shopping-bag text-danger me-2 fs-3"></i> E-Shop
+                    </a>
+                    <p  id="para1" class="text-muted" style="font-size: 0.95rem; line-height: 1.8; color: white;">
+                        Your one-stop destination for quality products. We bring you the best deals on Electronics, Clothing, Fruits, and much more. Shop with confidence!
+                    </p>
+                    <div class="social-icons mt-4">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+
+                <!-- Quick Links -->
+                <div class="col-lg-2 col-md-6">
+                    <h5 class="footer-heading">Quick Links</h5>
+                    <ul class="footer-links">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="product.html">All Products</a></li>
+                        <li><a href="wishlist.html">Wishlist</a></li>
+                        <li><a href="cart.html">My Cart</a></li>
+                        <li><a href="orders.html">Order History</a></li>
+                    </ul>
+                </div>
+
+                <!-- Customer Service -->
+                <div class="col-lg-3 col-md-6">
+                    <h5 class="footer-heading">Customer Service</h5>
+                    <ul class="footer-links">
+                        <li><a href="#">Contact Us</a></li>
+                        <li><a href="#">Returns & Refunds</a></li>
+                        <li><a href="#">Shipping Policy</a></li>
+                        <li><a href="#">FAQ & Help Center</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                    </ul>
+                </div>
+
+                <!-- Newsletter -->
+                <div class="col-lg-3 col-md-6">
+                    <h5 class="footer-heading">Newsletter</h5>
+                    <p  id="para2" class="text-muted mb-3" style="font-size: 0.95rem; color: white;">
+                        Subscribe to get special offers, free giveaways, and once-in-a-lifetime deals.
+                    </p>
+                    <form class="d-flex">
+                        <input type="email" class="form-control newsletter-input" placeholder="Enter your email" required>
+                        <button class="btn newsletter-btn" type="submit">Subscribe</button>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- Bottom Copyright Bar -->
+        <div class="footer-bottom">
+            <div class="container d-flex flex-column flex-md-row justify-content-between align-items-center">
+                <p>&copy; 2026 E-Shop. All Rights Reserved.</p>
+                <div class="payment-icons mt-3 mt-md-0">
+                    <i class="fab fa-cc-visa" title="Visa"></i>
+                    <i class="fab fa-cc-mastercard" title="Mastercard"></i>
+                    <i class="fab fa-cc-amex" title="American Express"></i>
+                    <i class="fab fa-cc-paypal" title="PayPal"></i>
+                    <i class="fab fa-google-pay" title="Google Pay"></i>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap & JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/js/script.js"></script>
+    
+    <script>
+document.addEventListener("DOMContentLoaded", () => {
+    // 1. Fetch the data from your JSON file
+    fetch('./assets/js/products.json')
+        .then(response => {
+            if (!response.ok) {
+                throw new Error("HTTP error " + response.status);
+            }
+            return response.json();
+        })
+        .then(data => {
+            // 2. Get the container
+            const container = document.getElementById('trending-products');
+            
+            // 3. Take the first 4 items (or you can filter trending ones)
+            const trendingItems = data.slice(0, 4); 
+
+            // 4. Loop through and generate the HTML
+            trendingItems.forEach(product => {
+                const productHTML = `
+                    <div class="col-12 col-md-6 col-lg-3 mb-4">
+                        <div class="product-card">
+                            <img src="${product.imageUrl}" alt="${product.name}" style="object-fit: contain; background: #fff;">
+                            <div class="mt-3 d-flex flex-column flex-grow-1">
+                                <h6>${product.name}</h6>
+                                <div class="mb-2">
+                                    <i class="fas fa-star text-warning"></i>
+                                    <span class="text-muted ms-1" style="font-size: 0.85rem;">${product.rating || '4.5'}</span>
+                                </div>
+                                <p class="text-muted small mb-3">${product.description || 'High quality product.'}</p>
+                                
+                                <div class="mb-3 mt-auto">
+                                    <span class="price-text">₹${product.price}</span>
+                                </div>
+
+                                <button class="btn btn-amazon w-100 mb-2" onclick="addToCart('${product.id}')">Add to Cart</button>
+                                <button class="btn btn-outline-danger w-100"><i class="far fa-heart me-1"></i> Wishlist</button>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                // 5. Inject into the page
+                container.innerHTML += productHTML;
+            });
+        })
+        .catch(error => {
+            console.error("Error loading products:", error);
+            // Show a friendly error message on the page
+            document.getElementById('trending-products').innerHTML = `
+                <div class="col-12 text-center text-danger">
+                    <p>Failed to load products. Please check your JSON file path.</p>
+                </div>
+            `;
+        });
+});
+
+function goToCategory(categoryName) {
+            // Save the category and redirect to product page
+            localStorage.setItem('selectedCategory', categoryName);
+            window.location.href = 'product.html';
+        }
+</script>
+</body>
+</html>

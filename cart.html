@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shopping Cart - E-Shop</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light sticky-top bg-white shadow-sm">
+        <div class="container-fluid px-4">
+            <a class="navbar-brand d-flex align-items-center fs-4 me-4 fw-bold" href="index.html" style="text-decoration: none; color: #1e3c72;">
+                <i class="fas fa-shopping-bag text-danger me-2 fs-3"></i> E-Shop
+            </a>
+            <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto align-items-center">
+                    <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="product.html">Products</a></li>
+                    <li class="nav-item"><a class="nav-link" href="wishlist.html"><i class="fas fa-heart text-danger me-1"></i> Wishlist <span class="badge bg-danger" id="wishlist-count">0</span></a></li>
+                    <li class="nav-item"><a class="nav-link" href="orders.html">Orders</a></li>
+                    <li class="nav-item" id="nav-auth-item"><a class="nav-link" href="login.html">Login</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Layout -->
+    <div class="container mt-4 mb-5">
+        <div class="row">
+            <!-- Cart Items List -->
+            <div class="col-md-8">
+                <h3 class="mb-4 fw-bold"><i class="fas fa-shopping-cart"></i> Shopping Cart</h3>
+                <div id="cart-page-items">
+                    <!-- JS will inject items here -->
+                </div>
+            </div>
+
+            <!-- Billing Summary -->
+            <div class="col-md-4">
+                <div class="card shadow-sm border-0 rounded-3">
+                    <div class="card-body">
+                        <h5 class="card-title mb-3 fw-bold">Price Details</h5>
+                        <div class="d-flex justify-content-between mb-2">
+                            <span>Price (<span id="page-item-count">0</span> items)</span>
+                            <span id="page-subtotal">₹0.00</span>
+                        </div>
+                        <div class="d-flex justify-content-between mb-2">
+                            <span>Delivery Charges</span>
+                            <span class="text-success">FREE</span>
+                        </div>
+                        <hr>
+                        <div class="d-flex justify-content-between fw-bold fs-5 mb-3">
+                            <span>Total Amount</span>
+                            <span id="page-total">₹0.00</span>
+                        </div>
+                        <div class="d-grid">
+                            <button onclick="proceedToCheckout()" class="btn btn-warning fw-bold py-2 w-100">Proceed to Checkout</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer-section mt-5">
+        <div class="footer-bottom py-4 text-center bg-dark text-white">
+            <p class="mb-0">&copy; 2026 E-Shop. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Bootstrap & JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/js/script.js"></script>
+
+    <!-- Page Specific Logic for cart.html -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            renderCartPage();
+        });
+
+        function renderCartPage() {
+            // 1. Get the correct cart for the logged-in user
+            const cartKey = typeof getUserKey === 'function' ? getUserKey('cart') : 'cart';
+            const cart = JSON.parse(localStorage.getItem(cartKey)) || [];
+            const container = document.getElementById('cart-page-items');
+            
+            if (!container) return;
+            
+            let subtotal = 0;
+            let totalItems = 0;
+
+            // 2. If cart is empty
+            if (cart.length === 0) {
+                container.innerHTML = `
+                    <div class="alert alert-info text-center py-5">
+                        <i class="fas fa-shopping-cart fa-3x text-muted mb-3"></i>
+                        <h4>Your cart is empty!</h4>
+                        <p class="text-muted">Looks like you haven't added anything yet.</p>
+                        <a href="product.html" class="btn btn-warning mt-2 fw-bold">Continue Shopping</a>
+                    </div>
+                `;
+                document.getElementById('page-item-count').innerText = 0;
+                document.getElementById('page-subtotal').innerText = `₹0.00`;
+                document.getElementById('page-total').innerText = `₹0.00`;
+                return;
+            }
+
+            // 3. Build the HTML
+            let html = '';
+            cart.forEach(item => {
+                subtotal += (item.price * item.qty);
+                totalItems += item.qty;
+
+                const imageUrl = `assets/images/${item.name}.jpg`;
+                const placeholder = `https://placehold.co/100x100?text=${encodeURIComponent(item.name)}`;
+
+                html += `
+                    <div class="card mb-3 shadow-sm border-0">
+                        <div class="row g-0 align-items-center p-3">
+                            <div class="col-md-2 text-center">
+                                <img src="${imageUrl}" class="img-fluid rounded" alt="${item.name}" style="max-height: 100px; object-fit: cover;" onerror="this.onerror=null; this.src='${placeholder}';">
+                            </div>
+                            <div class="col-md-6">
+                                <h5 class="card-title mb-1 fw-bold">${item.name}</h5>
+                                <p class="text-success small mb-1"><i class="fas fa-check-circle"></i> In Stock</p>
+                                <h5 class="text-danger mb-0 fw-bold">₹${item.price}</h5>
+                            </div>
+                            <div class="col-md-4 d-flex flex-column align-items-end">
+                                <div class="d-flex align-items-center mb-3">
+                                    <button class="btn btn-sm btn-outline-secondary" onclick="changePageQty(${item.id}, -1)">-</button>
+                                    <span class="mx-3 fw-bold">${item.qty}</span>
+                                    <button class="btn btn-sm btn-outline-secondary" onclick="changePageQty(${item.id}, 1)">+</button>
+                                </div>
+                                <button class="btn btn-sm btn-link text-danger text-decoration-none fw-bold" onclick="removePageItem(${item.id})">
+                                    <i class="fas fa-trash"></i> Remove
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            });
+
+            container.innerHTML = html;
+
+            // 4. Update Summary on the right
+            document.getElementById('page-item-count').innerText = totalItems;
+            document.getElementById('page-subtotal').innerText = `₹${subtotal.toFixed(2)}`;
+            document.getElementById('page-total').innerText = `₹${subtotal.toFixed(2)}`;
+        }
+
+        // Change Quantity
+        function changePageQty(id, change) {
+            const cartKey = typeof getUserKey === 'function' ? getUserKey('cart') : 'cart';
+            let cart = JSON.parse(localStorage.getItem(cartKey)) || [];
+            const index = cart.findIndex(item => item.id === id);
+            
+            if (index > -1) {
+                cart[index].qty += change;
+                if (cart[index].qty <= 0) {
+                    cart.splice(index, 1);
+                }
+                localStorage.setItem(cartKey, JSON.stringify(cart));
+                if (typeof updateUI === 'function') updateUI();
+                renderCartPage(); 
+            }
+        }
+
+        // Remove Item
+        function removePageItem(id) {
+            const cartKey = typeof getUserKey === 'function' ? getUserKey('cart') : 'cart';
+            let cart = JSON.parse(localStorage.getItem(cartKey)) || [];
+            cart = cart.filter(item => item.id !== id);
+            localStorage.setItem(cartKey, JSON.stringify(cart));
+            if (typeof updateUI === 'function') updateUI();
+            renderCartPage();
+        }
+
+        // Proceed to Checkout (Enforce Login)
+        function proceedToCheckout() {
+            const userId = localStorage.getItem('loggedInUserId'); // Changed to check ID
+            const cartKey = typeof getUserKey === 'function' ? getUserKey('cart') : 'cart';
+            const cart = JSON.parse(localStorage.getItem(cartKey)) || [];
+
+            if (cart.length === 0) {
+                alert("Your cart is empty!");
+                return;
+            }
+
+            if (!userId) {
+                alert("Please login to proceed to checkout.");
+                localStorage.setItem('checkoutRedirect', 'checkout.html');
+                window.location.href = 'login.html';
+            } else {
+                window.location.href = 'checkout.html';
+            }
+        }
+    </script>
+</body>
+</html>

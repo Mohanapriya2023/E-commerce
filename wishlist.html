@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Wishlist - E-Shop</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">E-Shop</a>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="product.html">Products</a></li>
+                    <li class="nav-item"><a class="nav-link" href="cart.html"><i class="fas fa-shopping-cart"></i> Cart <span class="badge" id="cart-count">0</span></a></li>
+                    <li class="nav-item"><a class="nav-link" href="orders.html">Orders</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="container mt-5">
+        <h2 class="mb-4">My Wishlist</h2>
+        
+        <div class="row" id="wishlist-container">
+            <!-- JavaScript will inject the wishlist items here -->
+        </div>
+    </div>
+
+        <!-- =========================================
+         PREMIUM FOOTER
+         ========================================= -->
+    <footer class="footer-section">
+        <div class="container">
+            <div class="row gy-4">
+                
+                <!-- Brand & About -->
+                <div class="col-lg-4 col-md-6">
+                    <a class="navbar-brand d-flex align-items-center fs-4 mb-3 fw-bold text-white" href="index.html" style="text-decoration: none;">
+                        <i class="fas fa-shopping-bag text-danger me-2 fs-3"></i> E-Shop
+                    </a>
+                    <p class="text-muted" style="font-size: 0.95rem; line-height: 1.8;">
+                        Your one-stop destination for quality products. We bring you the best deals on Electronics, Clothing, Fruits, and much more. Shop with confidence!
+                    </p>
+                    <div class="social-icons mt-4">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+
+                <!-- Quick Links -->
+                <div class="col-lg-2 col-md-6">
+                    <h5 class="footer-heading">Quick Links</h5>
+                    <ul class="footer-links">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="products.html">All Products</a></li>
+                        <li><a href="wishlist.html">Wishlist</a></li>
+                        <li><a href="cart.html">My Cart</a></li>
+                        <li><a href="orders.html">Order History</a></li>
+                    </ul>
+                </div>
+
+                <!-- Customer Service -->
+                <div class="col-lg-3 col-md-6">
+                    <h5 class="footer-heading">Customer Service</h5>
+                    <ul class="footer-links">
+                        <li><a href="#">Contact Us</a></li>
+                        <li><a href="#">Returns & Refunds</a></li>
+                        <li><a href="#">Shipping Policy</a></li>
+                        <li><a href="#">FAQ & Help Center</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                    </ul>
+                </div>
+
+                <!-- Newsletter -->
+                <div class="col-lg-3 col-md-6">
+                    <h5 class="footer-heading">Newsletter</h5>
+                    <p class="text-muted mb-3" style="font-size: 0.95rem;">
+                        Subscribe to get special offers, free giveaways, and once-in-a-lifetime deals.
+                    </p>
+                    <form class="d-flex">
+                        <input type="email" class="form-control newsletter-input" placeholder="Enter your email" required>
+                        <button class="btn newsletter-btn" type="submit">Subscribe</button>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- Bottom Copyright Bar -->
+        <div class="footer-bottom">
+            <div class="container d-flex flex-column flex-md-row justify-content-between align-items-center">
+                <p>&copy; 2026 E-Shop. All Rights Reserved.</p>
+                <div class="payment-icons mt-3 mt-md-0">
+                    <i class="fab fa-cc-visa" title="Visa"></i>
+                    <i class="fab fa-cc-mastercard" title="Mastercard"></i>
+                    <i class="fab fa-cc-amex" title="American Express"></i>
+                    <i class="fab fa-cc-paypal" title="PayPal"></i>
+                    <i class="fab fa-google-pay" title="Google Pay"></i>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap & JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/js/script.js"></script>
+
+        <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            renderWishlistPage();
+        });
+
+        function renderWishlistPage() {
+            // Get the unique wishlist for the current user
+            const wishlistKey = typeof getUserKey === 'function' ? getUserKey('wishlist') : 'wishlist';
+            const wishlist = JSON.parse(localStorage.getItem(wishlistKey)) || [];
+            const container = document.getElementById('wishlist-container');
+
+            if (wishlist.length === 0) {
+                container.innerHTML = `
+                    <div class="col-12 text-center mt-5 bg-white p-5 rounded shadow-sm">
+                        <i class="far fa-heart fa-4x text-muted mb-3"></i>
+                        <h4>Your wishlist is empty</h4>
+                        <p class="text-muted">Save your favorite items here to buy them later.</p>
+                        <a href="product.html" class="btn btn-warning mt-2 fw-bold px-4 py-2">Start Shopping</a>
+                    </div>
+                `;
+                return;
+            }
+
+            let html = '';
+            wishlist.forEach(item => {
+                const imageUrl = `assets/images/${item.name}.jpg`;
+                const placeholder = `https://placehold.co/300x400?text=${encodeURIComponent(item.name)}`;
+
+                html += `
+                    <div class="col-md-4 col-sm-6 mb-4">
+                        <div class="product-card h-100 d-flex flex-column p-3 shadow-sm border rounded bg-white">
+                            <img src="${imageUrl}" alt="${item.name}" style="height: 200px; object-fit: cover;" class="rounded mb-2" onerror="this.onerror=null; this.src='${placeholder}';">
+                            <h6 class="text-truncate fw-bold" title="${item.name}">${item.name}</h6>
+                            <h5 class="text-danger fw-bold mt-auto">₹${item.price}</h5>
+                            <div class="d-grid gap-2 mt-3">
+                                <button onclick="moveToCartFromWishlist(${item.id}, '${item.name.replace(/'/g, "\\'")}', ${item.price}, '${imageUrl}')" class="btn btn-amazon btn-sm">
+                                    <i class="fas fa-shopping-cart me-1"></i> Move to Cart
+                                </button>
+                                <button onclick="removeFromWishlistPage(${item.id})" class="btn btn-outline-danger btn-sm">
+                                    <i class="fas fa-trash me-1"></i> Remove
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            });
+
+            container.innerHTML = html;
+        }
+
+        function removeFromWishlistPage(id) {
+            const wishlistKey = typeof getUserKey === 'function' ? getUserKey('wishlist') : 'wishlist';
+            let wishlist = JSON.parse(localStorage.getItem(wishlistKey)) || [];
+            
+            wishlist = wishlist.filter(item => item.id !== id);
+            localStorage.setItem(wishlistKey, JSON.stringify(wishlist));
+            
+            if (typeof updateUI === 'function') updateUI();
+            renderWishlistPage();
+        }
+
+        function moveToCartFromWishlist(id, name, price, image) {
+            if (typeof addToCart === 'function') addToCart(id, name, price, image);
+            removeFromWishlistPage(id);
+        }
+    </script>
+</body>
+</html>
