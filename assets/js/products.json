@@ -1,5 +1,5 @@
 [
-  {"Id": 1, "name": "Orange", "price": 300, "category": "Fruits", "stock": 120, "description": "Fresh juicy oranges, rich in vitamin C", "imageUrl": "./assets/images/Orange.jpg", "rating": 4.5, "isAvailable": true},
+  {"Id": 1, "name": "Orange", "price": 300, "category": "Fruits", "stock": 120, "description": "Fresh juicy oranges, rich in vitamin C", "imageUrl": "./assets/images/orange.jpg", "rating": 4.5, "isAvailable": true},
   {"Id": 2, "name": "Apple", "price": 250, "category": "Fruits", "stock": 200, "description": "Crisp and sweet red apples", "imageUrl": "./assets/images/Apple.jpg", "rating": 4.7, "isAvailable": true},
   {"Id": 3, "name": "Banana", "price": 120, "category": "Fruits", "stock": 300, "description": "Ripe bananas, great source of potassium", "imageUrl": "./assets/images/banana.jpg", "rating": 4.3, "isAvailable": true},
   {"Id": 4, "name": "Mango", "price": 400, "category": "Fruits", "stock": 80, "description": "Sweet Alphonso mangoes, seasonal delight", "imageUrl": "./assets/images/mango.jpg", "rating": 4.8, "isAvailable": true},
@@ -33,7 +33,7 @@
   {"Id": 32, "name": "Power Bank 20000mAh", "price": 1499, "category": "Electronics", "stock": 130, "description": "Fast-charging 20000mAh power bank, dual USB", "imageUrl": "./assets/images/powerbank.jpg", "rating": 4.4, "isAvailable": true},
   {"Id": 33, "name": "DSLR Camera", "price": 42999, "category": "Electronics", "stock": 15, "description": "24MP DSLR camera with 18-55mm kit lens", "imageUrl": "./assets/images/dslr.jpg", "rating": 4.8, "isAvailable": true},
   {"Id": 34, "name": "Wireless Mouse", "price": 699, "category": "Electronics", "stock": 160, "description": "Ergonomic 2.4GHz wireless mouse", "imageUrl": "./assets/images/mouse.jpg", "rating": 4.2, "isAvailable": true},
-  {"Id": 35, "name": "Mechanical Keyboard", "price": 3499, "category": "Electronics", "stock": 55, "description": "RGB backlit mechanical keyboard, blue switches", "imageUrl": "./assets/images/Mechanical keyboard.jpg", "rating": 4.6, "isAvailable": true},
+  {"Id": 35, "name": "Mechanical Keyboard", "price": 3499, "category": "Electronics", "stock": 55, "description": "RGB backlit mechanical keyboard, blue switches", "imageUrl": "./assets/images/keyboard.jpg", "rating": 4.6, "isAvailable": true},
   {"Id": 36, "name": "LED TV 43-inch", "price": 27999, "category": "Electronics", "stock": 20, "description": "43-inch Full HD smart LED TV with Android", "imageUrl": "./assets/images/tv.jpg", "rating": 4.5, "isAvailable": true},
   {"Id": 37, "name": "Gaming Console", "price": 39999, "category": "Electronics", "stock": 10, "description": "Next-gen gaming console with 1TB storage", "imageUrl": "./assets/images/console.jpg", "rating": 4.9, "isAvailable": false},
   {"Id": 38, "name": "USB-C Charger 65W", "price": 1299, "category": "Electronics", "stock": 140, "description": "65W GaN fast charger with USB-C and USB-A", "imageUrl": "./assets/images/charger.jpg", "rating": 4.5, "isAvailable": true},
