@@ -52,7 +52,7 @@ async function loadProducts() {
                             <button onclick="toggleWishlist(${product.Id}, '${product.name.replace(/'/g, "\\'")}', ${product.price}, '${imageUrl}')" class="btn ${wishlistBtnClass} btn-sm">
                                 <i class="${wishlistIcon}"></i> ${wishlistText}
                             </button>
-                            <a href="product-details.html?id=${product.Id}" class="btn btn-link btn-sm">View Details</a>
+                            <a href="product_details.html?id=${product.Id}" class="btn btn-link btn-sm">View Details</a>
                         </div>
                     </div>
                 </div>
