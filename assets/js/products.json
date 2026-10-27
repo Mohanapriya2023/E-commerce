@@ -1,5 +1,5 @@
 [
-  {"Id": 1, "name": "Orange", "price": 300, "category": "Fruits", "stock": 120, "description": "Fresh juicy oranges, rich in vitamin C", "imageUrl": "./assets/images/orange.jpg", "rating": 4.5, "isAvailable": true},
+  {"Id": 1, "name": "Orange", "price": 300, "category": "Fruits", "stock": 120, "description": "Fresh juicy oranges, rich in vitamin C", "imageUrl": "./assets/images/Orange.jpg", "rating": 4.5, "isAvailable": true},
   {"Id": 2, "name": "Apple", "price": 250, "category": "Fruits", "stock": 200, "description": "Crisp and sweet red apples", "imageUrl": "./assets/images/apple.jpg", "rating": 4.7, "isAvailable": true},
   {"Id": 3, "name": "Banana", "price": 120, "category": "Fruits", "stock": 300, "description": "Ripe bananas, great source of potassium", "imageUrl": "./assets/images/banana.jpg", "rating": 4.3, "isAvailable": true},
   {"Id": 4, "name": "Mango", "price": 400, "category": "Fruits", "stock": 80, "description": "Sweet Alphonso mangoes, seasonal delight", "imageUrl": "./assets/images/mango.jpg", "rating": 4.8, "isAvailable": true},
